@@ -1,0 +1,70 @@
+$item-height: 40px;
+$checkbox-size: 20px;
+$icon-height: 8px;
+$icon-width: 12px;
+
+@function icon(){
+  $path: '<path fill="rgb(33, 150, 243)" d="M4.28571 8L0 4.16123L1.20857 3.0787L4.28571 5.82726L10.7914 0L12 1.09021L4.28571 8Z"/>';
+  $icon: '<svg xmlns="http://www.w3.org/2000/svg">#{$path}</svg>';
+  $prefix: 'data:image/svg+xml;utf8';
+
+  @return url('#{$prefix},#{$icon}');
+}
+
+.list-item {
+  font-size: 13px;
+  line-height: $item-height;
+  color: #4A4A4A;
+
+  &:hover {
+    background: #F1FCFF;
+  }
+
+  .list-item-label {
+    display: block;
+    cursor: pointer;
+    height: $item-height;
+    width: 100%;
+    padding: 0 ($item-height / 2);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.checkbox{
+  &-input {
+    display: none;
+
+    &:checked {
+      +.checkbox-face {
+        border-color: #2196F3;
+  
+        &:after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &-face {
+    position: relative;
+    display: inline-block;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    border: 1px solid #9abbce;
+    border-radius: 2px;
+    margin: 0 10px -5px 0;
+
+    &:after {
+      content: '';
+      display: block;
+      opacity: 0;
+      position: absolute;
+      width: $icon-width;
+      height: $icon-height;
+      top: 6px;
+      left: 3px;
+      background-image: icon();
+    }
+  }
+}
