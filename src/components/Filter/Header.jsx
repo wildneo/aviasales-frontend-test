@@ -1,4 +1,6 @@
 import React from 'react';
 import './styles/Filter.scss'
 
-export default ({ children }) => (<div className="filter-header">{children}</div>);
+const Header = ({ children }) => (<div className="filter-header">{children}</div>);
+
+export default Header;
