@@ -1,0 +1,50 @@
+.sorting {
+  position: relative;
+  color: #4A4A4A;
+  margin-bottom: 20px;
+
+  &-tabs {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 50px;
+
+    &-tab {
+      cursor: pointer;
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      border: 1px solid #DFE5EC;
+      background: white;
+
+      &.active {
+        background: #2196F3;
+        border: none;
+        color: white;
+      }
+
+      &:not(.active):hover {
+        background: #F1FCFF;
+      }
+
+      &:first-child {
+        border-radius: 5px 0 0 5px;
+      }
+
+      &:last-child {
+        border-radius: 0 5px 5px 0;
+      }
+
+      .tab-title {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
