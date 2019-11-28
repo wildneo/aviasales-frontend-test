@@ -8,16 +8,16 @@ export default class Item extends React.Component {
   };
 
   render() {
-    const { label } = this.props;
+    const { label, ...props } = this.props;
 
     return (
       <div className="list-item">
         <label className="list-item-label">
           <span className="checkbox">
             <input
+              {...props}
               className="checkbox-input"
               type="checkbox"
-              {...this.props}
             />
             <span className="checkbox-face" />
           </span>

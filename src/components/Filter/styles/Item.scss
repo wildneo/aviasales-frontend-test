@@ -16,11 +16,7 @@ $icon-width: 12px;
   line-height: $item-height;
   color: #4A4A4A;
 
-  &:hover {
-    background: #F1FCFF;
-  }
-
-  .list-item-label {
+  &-label {
     display: block;
     cursor: pointer;
     height: $item-height;
@@ -28,6 +24,10 @@ $icon-width: 12px;
     padding: 0 ($item-height / 2);
     white-space: nowrap;
     overflow: hidden;
+  }
+
+  &:hover {
+    background: #F1FCFF;
   }
 }
 
@@ -58,13 +58,13 @@ $icon-width: 12px;
     &:after {
       content: '';
       display: block;
-      opacity: 0;
       position: absolute;
       width: $icon-width;
       height: $icon-height;
       top: 6px;
       left: 3px;
       background-image: icon();
+      opacity: 0;
     }
   }
 }
