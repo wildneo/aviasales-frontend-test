@@ -12,7 +12,7 @@ export default class Segment extends React.Component {
   render() {
     const { segment } = this.props;
     const routeTitle = `${segment.origin} — ${segment.destination}`;
-    const stopsTitle = declinationHelper(segment.stops);
+    const stopsTitle = declinationHelper(segment.stops.length);
     const duration = formatDuration(segment.duration);
     const interval = formatTime(segment.date, segment.duration);
     const citys = segment.stops.join(', ');
