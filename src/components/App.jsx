@@ -2,7 +2,8 @@ import React from 'react';
 import { Grid, Container } from 'semantic-ui-react';
 import StopsFilter from './StopsFilter';
 import SortingMenu from './SortingMenu';
-import Ticket from './Ticket';
+// import Ticket from './Ticket';
+import TicketsList from './TicketsList';
 
 
 function App() {
@@ -14,9 +15,7 @@ function App() {
         </Grid.Column>
         <Grid.Column width="11">
           <SortingMenu />
-          <Ticket />
-          <Ticket />
-          <Ticket />
+          <TicketsList />
         </Grid.Column>
       </Grid>
     </Container>
