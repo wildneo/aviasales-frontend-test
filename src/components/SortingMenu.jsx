@@ -1,41 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
+import { getSorts } from '../selectors';
 import Sorting from './Sorting';
 
+const tabs = [
+  { value: 'cheap', title: 'Самый дешевый' },
+  { value: 'fast', title: 'Самый быстрый' },
+];
+
 const mapStateToProps = (state) => {
-  return state;
+  const activeTab = getSorts(state);
+
+  return { activeTab };
 };
 
-class SortingMenu extends React.PureComponent {
-  state = {
-    activeTab: 'cheap',
-  }
+const actionsList = {
+  setSorting: actions.setSorting,
+};
 
+class SortingMenu extends React.Component {
   handleClick = (e, { value }) => {
-    this.setState({ activeTab: value });
-    console.log(value);
+    const { setSorting } = this.props;
+    setSorting({ value });
   }
 
   render() {
-    const { activeTab } = this.state;
+    const { activeTab } = this.props;
 
     return (
       <Sorting>
-        <Sorting.Tab
-          onClick={this.handleClick}
-          title="Самый дешевый"
-          value="cheap"
-          active={activeTab === 'cheap'}
-        />
-        <Sorting.Tab
-          onClick={this.handleClick}
-          title="Самый быстрый"
-          value="fast"
-          active={activeTab === 'fast'}
-        />
+        {tabs.map((tab) => (
+          <Sorting.Tab
+            onClick={this.handleClick}
+            active={tab.value === activeTab}
+            key={tab.value}
+            value={tab.value}
+            title={tab.title}
+          />
+        ))}
       </Sorting>
     );
   }
 }
 
-export default connect(mapStateToProps)(SortingMenu);
+export default connect(mapStateToProps, actionsList)(SortingMenu);

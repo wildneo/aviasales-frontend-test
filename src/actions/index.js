@@ -12,6 +12,8 @@ export const fetchTicketsSuccess = createAction('FETCH_TICKETS_SUCCESS');
 
 export const ticketsSearchComplete = createAction('TICKETS_SEARCH_COMPLETE');
 
+export const setSorting = createAction('SET_SORTING');
+
 export const initSearch = () => async (dispach) => {
   dispach(fetchSearchIdRequest());
   try {

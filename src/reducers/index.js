@@ -21,12 +21,6 @@ export const maxStops = (segments) => {
   return Math.max(...allStops);
 };
 
-export const getDuration = (segments) => (
-  segments.reduce((acc, { duration }) => (acc + duration), 0)
-);
-
-
-
 const fetchSearchState = handleActions({
   [actions.fetchSearchIdRequest]: () => 'requested',
   [actions.fetchSearchIdFailure]: () => 'failed',
@@ -51,15 +45,19 @@ const tickets = handleActions({
   }
 }, { all: [], byStops: {} });
 
-// export const stops = handleActions({
-//   [actions.fetchTicketsSuccess]: (state, { payload: { tickets } }) => ([
-//     ...state,
-//     ...tickets,
-//   ]),
-// }, []);
+export const filters = handleActions({
+  [actions.setSorting]: (state, { payload: { value } }) => ({
+    ...state,
+    sortingState: value,
+  }),
+}, {
+  stopsState: {},
+  sortingState: 'cheap',
+ });
 
 export default combineReducers({
   fetchSearchState,
   fetchTicketsState,
   tickets,
+  filters,
 });
