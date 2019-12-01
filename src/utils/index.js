@@ -1,3 +1,7 @@
+export const getTotalDuration = (segments) => (
+  segments.reduce((acc, { duration }) => (acc + duration), 0)
+);
+
 export const getTimeFromDate = (date, timeZone = 'UTC') => {
   const options = {
     timeZone,
@@ -12,7 +16,6 @@ export const formatTime = (dateString, duration) => {
   const timeZone = 'Europe/Moscow';
   const startTime = Date.parse(dateString);
   const endTime = startTime + (60 * 1000 *duration);
-  console.log(startTime, endTime);
   
   return `${getTimeFromDate(startTime, timeZone)} — ${getTimeFromDate(endTime, timeZone)}`;
 };
@@ -33,19 +36,18 @@ export const formatPrice = (price = 0) => {
 };
 
 export const declinationHelper = (stops) => {
-  const amount = stops.length;
-  const rem = amount % 100;
+  const rem = stops % 100;
   const key = rem > 20 ? rem % 10 : rem;
 
   switch (true) {
     case key === 1:
-      return `${amount} пересадка`;
+      return `${stops} пересадка`;
   
     case key >= 2 && key <= 4:
-      return `${amount} пересадки`;
+      return `${stops} пересадки`;
   
     case key >= 5 && key <= 20:
-      return `${amount} пересадок`;
+      return `${stops} пересадок`;
   
     default:
       return 'Без пересадок';
