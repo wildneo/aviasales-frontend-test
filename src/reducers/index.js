@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
-import { groupBy } from 'lodash';
+import { groupBy, includes } from 'lodash';
 import * as actions from '../actions';
 
 export const union = (newObj, oldObj) => {
@@ -45,7 +45,34 @@ const tickets = handleActions({
   }
 }, { all: [], byStops: {} });
 
-export const filters = handleActions({
+const stopFilters = handleActions({
+  [actions.toggleAllStopsFilters]: (state) => {
+    const { byStops: oldByStops } = state;
+    const allStopsFilter = !state.allStopsFilter;
+    const byStops = Object.values(oldByStops).map(() => allStopsFilter);
+
+    return {
+      allStopsFilter,
+      byStops,
+    };
+  },
+  [actions.toggleStopFilter]: (state, { payload: { value } }) => {
+    const { byStops: oldByStops } = state;
+    const invertedValue = !oldByStops[value];
+    const byStops = { ...oldByStops, [value]: invertedValue };
+    const allStopsFilter = !includes(byStops, false);
+
+    return {
+      allStopsFilter,
+      byStops: { ...oldByStops, [value]: invertedValue },
+    };
+  },
+}, {
+  allStopsFilter: true,
+  byStops: { 0: true, 1: true, 2: true, 3: true },
+ });
+
+const filters = handleActions({
   [actions.setSorting]: (state, { payload: { value } }) => ({
     ...state,
     sortingState: value,
@@ -60,4 +87,5 @@ export default combineReducers({
   fetchTicketsState,
   tickets,
   filters,
+  stopFilters,
 });

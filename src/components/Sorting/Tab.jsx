@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import './Sorting.scss';
 
-export default class Tab extends React.Component {
+export default class Tab extends React.PureComponent {
   static propTypes = {
+    onClick: PropTypes.func,
     title: PropTypes.string,
     active: PropTypes.bool,
     value: PropTypes.oneOfType([

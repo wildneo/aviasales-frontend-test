@@ -22,7 +22,7 @@ const store = createStore(
   ),
 );
 
-store.dispatch(initSearch());
+// store.dispatch(initSearch());
 
 ReactDOM.render(
   <Provider store={store}>

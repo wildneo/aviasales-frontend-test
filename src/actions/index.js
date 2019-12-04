@@ -13,6 +13,8 @@ export const fetchTicketsSuccess = createAction('FETCH_TICKETS_SUCCESS');
 export const ticketsSearchComplete = createAction('TICKETS_SEARCH_COMPLETE');
 
 export const setSorting = createAction('SET_SORTING');
+export const toggleAllStopsFilters = createAction('FILTER_STOPS_ALL_TOGGLE');
+export const toggleStopFilter = createAction('FILTER_STOP_TOGGLE');
 
 export const initSearch = () => async (dispach) => {
   dispach(fetchSearchIdRequest());

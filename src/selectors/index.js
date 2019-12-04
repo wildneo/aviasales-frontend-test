@@ -18,11 +18,11 @@ import { getTotalDuration } from '../utils';
 
 export const getAllTickets = (state) => state.tickets.all;
 export const getTicketsByStops = (state) => state.tickets.byStops;
-export const getFilters = (state) => state.filters.stopsState;
+export const getStopFilters = (state) => state.stopFilters;
 export const getSorts = (state) => state.filters.sortingState;
 
 export const filteredTicketsSelector = createSelector(
-  [getAllTickets, getTicketsByStops, getFilters],
+  [getAllTickets, getTicketsByStops, getStopFilters],
   (allTickets, byStops, filters) => (filters.all
     ? allTickets
     : filters.stops.reduce((acc, stop) => (
