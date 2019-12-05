@@ -66,20 +66,14 @@ const stopFilters = handleActions({
   byStops: { 0: true, 1: true, 2: true, 3: true },
  });
 
-const filters = handleActions({
-  [actions.setSorting]: (state, { payload: { value } }) => ({
-    ...state,
-    sortingState: value,
-  }),
-}, {
-  stopsState: {},
-  sortingState: 'cheap',
- });
+const sorts = handleActions({
+  [actions.setSorting]: (state, { payload: { value } }) => (value),
+}, 'cheap');
 
 export default combineReducers({
   fetchSearchState,
   fetchTicketsState,
-  tickets,
-  filters,
   stopFilters,
+  tickets,
+  sorts,
 });

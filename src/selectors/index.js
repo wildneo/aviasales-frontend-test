@@ -6,7 +6,7 @@ export const getAllTickets = (state) => state.tickets.all;
 export const getTicketsByStops = (state) => state.tickets.byStops;
 export const getAllFiltersState = (state) => state.stopFilters.setAll;
 export const getStopFilters = (state) => state.stopFilters.byStops;
-export const getSorts = (state) => state.filters.sortingState;
+export const getSorts = (state) => state.sorts;
 
 export const possibleFiltersSelector = createSelector(
   [getStopFilters],
