@@ -2,23 +2,7 @@ import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
 import { groupBy, includes } from 'lodash';
 import * as actions from '../actions';
-
-export const union = (newObj, oldObj) => {
-  const keys = Object.keys(newObj);
-  const unionObj = keys.map((key) => (
-    oldObj[key]
-      ? [...oldObj[key], ...newObj[key]]
-      : newObj[key]
-  ));
-
-  return unionObj;
-};
-
-export const maxStops = (segments) => {
-  const allStops = segments.map(({ stops }) => stops.length);
-
-  return Math.max(...allStops);
-};
+import { union, maxStops } from '../utils';
 
 const fetchSearchState = handleActions({
   [actions.fetchSearchIdRequest]: () => 'requested',
