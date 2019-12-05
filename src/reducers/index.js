@@ -47,28 +47,22 @@ const tickets = handleActions({
 
 const stopFilters = handleActions({
   [actions.toggleAllStopsFilters]: (state) => {
-    const { byStops: oldByStops } = state;
-    const allStopsFilter = !state.allStopsFilter;
-    const byStops = Object.values(oldByStops).map(() => allStopsFilter);
+    const { setAll: oldSetAll, byStops: oldByStops } = state;
+    const setAll = !oldSetAll;
+    const byStops = Object.values(oldByStops).map(() => setAll);
 
-    return {
-      allStopsFilter,
-      byStops,
-    };
+    return { setAll, byStops };
   },
   [actions.toggleStopFilter]: (state, { payload: { value } }) => {
     const { byStops: oldByStops } = state;
-    const invertedValue = !oldByStops[value];
-    const byStops = { ...oldByStops, [value]: invertedValue };
-    const allStopsFilter = !includes(byStops, false);
+    const inverted = !oldByStops[value];
+    const byStops = { ...oldByStops, [value]: inverted };
+    const setAll = !includes(byStops, false);
 
-    return {
-      allStopsFilter,
-      byStops: { ...oldByStops, [value]: invertedValue },
-    };
+    return { setAll, byStops };
   },
 }, {
-  allStopsFilter: true,
+  setAll: true,
   byStops: { 0: true, 1: true, 2: true, 3: true },
  });
 

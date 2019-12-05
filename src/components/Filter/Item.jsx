@@ -4,13 +4,13 @@ import './styles/Item.scss';
 
 export default class Item extends React.PureComponent {
   static propTypes = {
-    onClick: PropTypes.func,
+    onChange: PropTypes.func,
     label: PropTypes.node,
   };
 
-  handleClick = (event) => {
-    const { onClick, value } = this.props;
-    onClick(event, { value });
+  handleChange = (event) => {
+    const { onChange, value } = this.props;
+    onChange(event, { value });
   }
 
   render() {
@@ -22,7 +22,7 @@ export default class Item extends React.PureComponent {
           <span className="checkbox">
             <input
               {...props}
-              onClick={this.handleClick}
+              onChange={this.handleChange}
               className="checkbox-input"
               type="checkbox"
             />

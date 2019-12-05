@@ -1,18 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { declinationHelper } from '../utils';
+import { getAllFiltersState, possibleFiltersSelector } from '../selectors';
 import Filter from './Filter';
 
 const mapStateToProps = (state) => {
-  const { allStopsFilter, byStops } = state.stopFilters;
-  const stops = Object.keys(byStops);
-  const possibleFilters = stops.map((value) => {
-    const label = declinationHelper(value);
-    return { value, label, isChecked: byStops[value] };
-  });
+  const setAll = getAllFiltersState(state);
+  const possibleFilters = possibleFiltersSelector(state);
 
-  return { allStopsFilter, possibleFilters };
+  return { setAll, possibleFilters };
 };
 
 const actionsList = {
@@ -21,18 +17,18 @@ const actionsList = {
 };
 
 class StopsFilter extends React.PureComponent {
-  handleAllClick = () => {
+  handleChangeAll = () => {
     const { toggleAllStopsFilters } = this.props;
     toggleAllStopsFilters();
   }
 
-  handleClick = (e, { value }) => {
+  handleChange = (e, { value }) => {
     const { toggleStopFilter } = this.props;
     toggleStopFilter({ value });
   }
 
   render() {
-    const { allStopsFilter, possibleFilters } = this.props;
+    const { setAll, possibleFilters } = this.props;
 
     return (
       <Filter>
@@ -41,14 +37,14 @@ class StopsFilter extends React.PureComponent {
         </Filter.Header>
         <Filter.Content>
           <Filter.Item
-            onClick={this.handleAllClick}
-            checked={allStopsFilter}
+            onChange={this.handleChangeAll}
+            checked={setAll}
             label="Все"
             value="all"
           />
           {possibleFilters.map((filter) => (
             <Filter.Item
-              onClick={this.handleClick}
+              onChange={this.handleChange}
               checked={filter.isChecked}
               key={filter.value}
               value={filter.value}
