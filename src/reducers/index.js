@@ -46,7 +46,8 @@ const stopFilters = handleActions({
   [actions.toggleAllStopsFilters]: (state) => {
     const { selectAll: oldSetAll, byStops: oldByStops } = state;
     const selectAll = !oldSetAll;
-    const byStops = Object.values(oldByStops).map(() => selectAll);
+    const byStops = Object.keys(oldByStops)
+      .reduce((acc, key) => ({ ...acc, [key]: selectAll }), {});
 
     return { selectAll, byStops };
   },
