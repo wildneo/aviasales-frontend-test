@@ -4,7 +4,7 @@ import Content from './Content';
 import Item from './Item';
 import './styles/Filter.scss'
 
-const Filter = React.memo(({ children }) => (<div className="filter">{children}</div>));
+const Filter = ({ children }) => (<div className="filter">{children}</div>);
 
 Filter.Header = Header;
 Filter.Content = Content;
