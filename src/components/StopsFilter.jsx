@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { getAllFiltersState, possibleFiltersSelector } from '../selectors';
+import { getStopFilters, possibleFiltersSelector } from '../selectors';
 import Filter from './Filter';
 
 const mapStateToProps = (state) => {
-  const setAll = getAllFiltersState(state);
+  const selectAll = getStopFilters(state).selectAll;
   const possibleFilters = possibleFiltersSelector(state);
 
-  return { setAll, possibleFilters };
+  return { selectAll, possibleFilters };
 };
 
 const actionsList = {
@@ -28,7 +28,7 @@ class StopsFilter extends React.PureComponent {
   }
 
   render() {
-    const { setAll, possibleFilters } = this.props;
+    const { selectAll, possibleFilters } = this.props;
 
     return (
       <Filter>
@@ -38,7 +38,7 @@ class StopsFilter extends React.PureComponent {
         <Filter.Content>
           <Filter.Item
             onChange={this.handleChangeAll}
-            checked={setAll}
+            checked={selectAll}
             label="Все"
             value="all"
           />
