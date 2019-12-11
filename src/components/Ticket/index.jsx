@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Placeholder from './Placeholder';
 import Header from './Header';
 import Body from './Body';
 import './Ticket.scss';
 
-const testTicket = {
+const defailtTicket = {
   price: 66579,
   carrier: 'FV',
   segments: [
@@ -29,13 +30,13 @@ const testTicket = {
   ]
 };
 
-export default class Ticket extends React.Component {
+class Ticket extends React.Component {
   static propTypes = {
     ticket: PropTypes.object,
   };
 
   static defaultProps = {
-    ticket: testTicket,
+    ticket: defailtTicket,
   };
 
   render() {
@@ -52,3 +53,7 @@ export default class Ticket extends React.Component {
     );
   }
 }
+
+Ticket.Placeholder = Placeholder;
+
+export default Ticket;

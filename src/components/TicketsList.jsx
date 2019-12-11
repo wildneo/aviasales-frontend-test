@@ -1,21 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { uniqueId } from 'lodash';
+import { uniqueId, times } from 'lodash';
 import { sortedTicketsSelector } from '../selectors';
 import Ticket from './Ticket';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, { fetchSearchState }) => {
   const tickets = sortedTicketsSelector(state).slice(0, 5);
 
-  return { tickets };
+  return { tickets, fetchSearchState };
 };
 
 class TicktsList extends React.Component {
   render() {
-    const { tickets } = this.props;
+    const { tickets, fetchSearchState } = this.props;
+    const isFetching = fetchSearchState === 'requested';
+
     return (
       <div>
-        {tickets.map((ticket) => <Ticket key={uniqueId()} ticket={ticket} />)}
+        {isFetching
+          ? times(5, () => (<Ticket.Placeholder key={uniqueId()} />))
+          : tickets.map((ticket) => <Ticket key={uniqueId()} ticket={ticket} />)
+        }
       </div>
     );
   }

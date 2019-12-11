@@ -8,15 +8,10 @@
     display: flex;
     width: 100%;
     padding: 20px;
+    align-items: center;
+    justify-content: flex-start;
 
     .ticket {
-      &-price,
-      &-carrier {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-      }
-
       &-price {
         flex-basis: (100% * 2/3);
         font-weight: 600;
@@ -29,9 +24,13 @@
           font-weight: 400;
         }
       }
-      &-carrier {
-        &-img {
 
+      &-carrier {
+        flex-basis: (100% * 1/3);
+        height: 36px;
+
+        img {
+          max-height: 100%;
         }
       }
     }
@@ -48,12 +47,9 @@
         margin-bottom: 10px;
       }
 
-      &-route,
-      &-length,
-      &-stops {
+      &-content {
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
         flex-basis: (100% / 3);
       }
 
@@ -66,9 +62,7 @@
         color: #A0B0B9;
       }
 
-      &-time,
-      &-duration,
-      &-citys {
+      &-description {
         font-weight: 600;
         font-size: 14px;
         line-height: 21px;
@@ -77,4 +71,29 @@
       }
     }
   }
+
+  &-placeholder {
+    padding: 20px;
+
+    .header {
+      &:after {
+        content: '';
+        display: block;
+        background-color: white;
+        height: 22px;
+      }
+    }
+
+    .segment {
+      &:not(:last-child) {
+        &:after {
+          content: '';
+          display: block;
+          background-color: white;
+          height: 16px;
+        }
+      }
+    }
+  }
 }
+

@@ -19,17 +19,17 @@ export default class Segment extends React.Component {
 
     return (
       <div className="segment">
-        <div className="segment-route">
+        <div className="segment-content">
           <div className="segment-title">{routeTitle}</div>
-          <div className="segment-time">{interval}</div>
+          <div className="segment-description">{interval}</div>
         </div>
-        <div className="segment-length">
+        <div className="segment-content">
           <div className="segment-title">В пути</div>
-          <div className="segment-duration">{duration}</div>
+          <div className="segment-description">{duration}</div>
         </div>
-        <div className="segment-stops">
+        <div className="segment-content">
           <div className="segment-title">{stopsTitle}</div>
-          <div className="segment-citys">{citys}</div>
+          <div className="segment-description">{citys}</div>
         </div>
       </div>
     );
