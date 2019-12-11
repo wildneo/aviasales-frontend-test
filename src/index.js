@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import { setConfiguration } from 'react-grid-system';
 import reducers from './reducers';
 import { initSearch } from './actions';
 import App from './components/App';
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
+
+setConfiguration({ defaultScreenClass: 'md', gutterWidth: 20 });
 
 /* eslint-disable no-underscore-dangle */
 const ext = window.__REDUX_DEVTOOLS_EXTENSION__;

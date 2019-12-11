@@ -1,23 +1,29 @@
 import React from 'react';
-import { Grid, Container } from 'semantic-ui-react';
+// import { Grid, Container } from 'semantic-ui-react';
+import { Container, Row, Col } from 'react-grid-system';
 import StopsFilter from './StopsFilter';
 import SortingMenu from './SortingMenu';
-// import Ticket from './Ticket';
+import Header from './Header';
 import TicketsList from './TicketsList';
 
 
 function App() {
   return (
     <Container>
-      <Grid stackable centered>
-        <Grid.Column width="5">
+      <Row>
+        <Col>
+          <Header />
+        </Col>
+      </Row>
+      <Row>
+        <Col sm={12}  md={4}>
           <StopsFilter />
-        </Grid.Column>
-        <Grid.Column width="11">
+        </Col>
+        <Col sm={12}  md={8}>
           <SortingMenu />
           <TicketsList />
-        </Grid.Column>
-      </Grid>
+        </Col>
+      </Row>
     </Container>
   );
 }

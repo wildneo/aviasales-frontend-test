@@ -1,0 +1,14 @@
+.page-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160px;
+  
+  .header {
+    &-logo {
+      &-img {
+        max-width: 100%;
+      }
+    }
+  }
+}
