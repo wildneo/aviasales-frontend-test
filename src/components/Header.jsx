@@ -1,20 +1,33 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import TicketsLoader from './TicketsLoader';
 import logo from '../logo.svg'
 import './Header.scss'
 
-const Header = () => (
-  <div className="page-header">
-    <a
-      className="header-logo-link"
-      href="/"
-    >
-      <img
-        className="header-logo-img"
-        alt="aviasales"
-        src={logo}
-      />
-    </a>
-  </div>
-);
+const mapStateToProps = ({ fetchSearchState }) => {
+  return { fetchSearchState };
+};
 
-export default Header;
+const Header = ({ fetchSearchState }) => {
+  const isFetching = fetchSearchState === 'received';
+
+  return (
+    <>
+      {isFetching && <TicketsLoader />}
+      <div className="page-header">
+        <a
+          className="header-logo-link"
+          href="/"
+        >
+          <img
+            className="header-logo-img"
+            alt="aviasales"
+            src={logo}
+          />
+        </a>
+      </div>
+    </>
+  );
+};
+
+export default connect(mapStateToProps)(Header);

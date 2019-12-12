@@ -16,7 +16,7 @@ class TicktsList extends React.Component {
     const isFetching = fetchSearchState === 'requested';
 
     return (
-      <div>
+      <div className="tickets-list">
         {isFetching
           ? times(5, () => (<Ticket.Placeholder key={uniqueId()} />))
           : tickets.map((ticket) => <Ticket key={uniqueId()} ticket={ticket} />)

@@ -6,26 +6,23 @@ import SortingMenu from './SortingMenu';
 import Header from './Header';
 import TicketsList from './TicketsList';
 
-
-function App() {
-  return (
-    <Container>
-      <Row>
-        <Col>
-          <Header />
-        </Col>
-      </Row>
-      <Row>
-        <Col sm={12}  md={4}>
-          <StopsFilter />
-        </Col>
-        <Col sm={12}  md={8}>
-          <SortingMenu />
-          <TicketsList />
-        </Col>
-      </Row>
-    </Container>
-  );
-}
+const App = () => (
+  <Container>
+    <Row>
+      <Col>
+        <Header />
+      </Col>
+    </Row>
+    <Row>
+      <Col sm={12} md={4}>
+        <StopsFilter />
+      </Col>
+      <Col sm={12} md={8}>
+        <SortingMenu />
+        <TicketsList />
+      </Col>
+    </Row>
+  </Container>
+);
 
 export default App;
