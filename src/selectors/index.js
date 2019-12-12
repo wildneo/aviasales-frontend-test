@@ -1,9 +1,8 @@
 import { createSelector } from 'reselect';
-import { sortBy } from 'lodash';
-import { getTotalDuration, declinationHelper } from '../utils';
+import { sortBy, groupBy } from 'lodash';
+import { getTotalDuration, declinationHelper, maxStops } from '../utils';
 
-export const getAllTickets = (state) => state.tickets.all;
-export const getTicketsByStops = (state) => state.tickets.byStops;
+export const getAllTickets = (state) => state.tickets;
 export const getStopFilters = (state) => state.stopFilters;
 export const getSorts = (state) => state.sorts;
 
@@ -21,8 +20,13 @@ export const possibleFiltersSelector = createSelector(
   },
 );
 
+export const ticketsByStopsSelector = createSelector(
+  [getAllTickets],
+  (allTickets) => groupBy(allTickets, (t) => maxStops(t.segments)),
+);
+
 export const filteredTicketsSelector = createSelector(
-  [getAllTickets, getTicketsByStops, getStopFilters],
+  [getAllTickets, ticketsByStopsSelector, getStopFilters],
   (allTickets, byStops, stopFilters) => {
     const keys = Object.keys(stopFilters.byStops);
     const active = keys.filter((stop) => stopFilters.byStops[stop]);
