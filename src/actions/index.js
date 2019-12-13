@@ -14,6 +14,13 @@ export {
 } from './fetchTickets';
 
 export {
+  refreshRequest,
+  refreshFailure,
+  refreshSuccess,
+  refresh,
+} from './refresh';
+
+export {
   toggleAllStopsFilters,
   toggleStopFilter,
 } from './filters';
