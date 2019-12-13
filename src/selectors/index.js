@@ -13,11 +13,11 @@ export const ticketsByStopsSelector = createSelector(
 
 export const availableFiltersSelector = createSelector(
   [ticketsByStopsSelector, getStopsFilter],
-  (byStops, stopFilter) => {
+  (byStops, stopsFilter) => {
     const keys = Object.keys(byStops);
     const filters = keys.map((value) => {
       const label = declinationHelper(value);
-      const isChecked = stopFilter.byStops[value];
+      const isChecked = stopsFilter.byStops[value];
 
       return { value, label, isChecked };
     });
@@ -27,10 +27,10 @@ export const availableFiltersSelector = createSelector(
 
 export const filteredTicketsSelector = createSelector(
   [getAllTickets, ticketsByStopsSelector, getStopsFilter],
-  (allTickets, byStops, stopFilter) => {
+  (allTickets, byStops, stopsFilter) => {
     const keys = Object.keys(byStops);
-    const active = keys.filter((stop) => stopFilter.byStops[stop]);
-    const tickets = stopFilter.selectAll
+    const active = keys.filter((stop) => stopsFilter.byStops[stop]);
+    const tickets = stopsFilter.selectAll
     ? allTickets
     : active.reduce((acc, stop) => (
       [...acc, ...byStops[stop]]
