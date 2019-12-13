@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { getStopFilters, possibleFiltersSelector } from '../selectors';
+import { getStopsFilter, availableFiltersSelector } from '../selectors';
 import Filter from './Filter';
 
 const mapStateToProps = (state) => {
-  const selectAll = getStopFilters(state).selectAll;
-  const possibleFilters = possibleFiltersSelector(state);
+  const selectAll = getStopsFilter(state).selectAll;
+  const possibleFilters = availableFiltersSelector(state);
 
   return { selectAll, possibleFilters };
 };
