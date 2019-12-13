@@ -4,20 +4,20 @@ import { uniqueId, times } from 'lodash';
 import { sortedTicketsSelector } from '../selectors';
 import Ticket from './Ticket';
 
-const mapStateToProps = (state, { fetchSearchState }) => {
+const mapStateToProps = (state) => {
   const tickets = sortedTicketsSelector(state).slice(0, 5);
+  const firstFetch = state.pollingState.firstFetch;
 
-  return { tickets, fetchSearchState };
+  return { tickets, firstFetch };
 };
 
 class TicktsList extends React.Component {
   render() {
-    const { tickets, fetchSearchState } = this.props;
-    const isFetching = fetchSearchState === 'requested';
+    const { tickets, firstFetch } = this.props;
 
     return (
       <div className="tickets-list">
-        {isFetching
+        {firstFetch
           ? times(5, () => (<Ticket.Placeholder key={uniqueId()} />))
           : tickets.map((ticket) => <Ticket key={uniqueId()} ticket={ticket} />)
         }
