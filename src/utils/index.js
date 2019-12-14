@@ -43,21 +43,26 @@ export const formatPrice = (price = 0) => {
   return priceSep;
 };
 
-export const declinationHelper = (stops) => {
-  const rem = stops % 100;
+export const declinationHelper = (amount, textForms, zeroForm) => {
+  const rem = amount % 100;
   const key = rem > 20 ? rem % 10 : rem;
 
   switch (true) {
     case key === 1:
-      return `${stops} пересадка`;
+      return `${amount} ${textForms[0]}`;
 
     case key >= 2 && key <= 4:
-      return `${stops} пересадки`;
+      return `${amount} ${textForms[1]}`;
 
     case key >= 5 && key <= 20:
-      return `${stops} пересадок`;
+      return `${amount} ${textForms[2]}`;
+
+    case key === 0 && +amount !== 0:
+      return `${amount} ${textForms[2]}`;
 
     default:
-      return 'Без пересадок';
+      return zeroForm
+        ? `${zeroForm}`
+        : `${amount} ${textForms[2]}`;
   }
 };
