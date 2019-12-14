@@ -1,4 +1,10 @@
-export const getTotalDuration = (segments) => (
+export const maxStops = (segments) => {
+  const allStops = segments.map(({ stops }) => stops.length);
+
+  return Math.max(...allStops);
+};
+
+export const getTotalDuration = (segments = []) => (
   segments.reduce((acc, { duration }) => (acc + duration), 0)
 );
 
@@ -12,12 +18,14 @@ export const getTimeFromDate = (date, timeZone = 'UTC') => {
   return new Date(date).toLocaleTimeString('ru', options);
 };
 
-export const formatTime = (dateString, duration) => {
+export const formatTimeInterval = (dateString, duration) => {
   const timeZone = 'Europe/Moscow';
   const startTime = Date.parse(dateString);
-  const endTime = startTime + (60 * 1000 *duration);
-  
-  return `${getTimeFromDate(startTime, timeZone)} — ${getTimeFromDate(endTime, timeZone)}`;
+  const endTime = startTime + (60 * 1000 * duration);
+  const formatedStartTime = getTimeFromDate(startTime, timeZone);
+  const formatedEndTime = getTimeFromDate(endTime, timeZone);
+
+  return `${formatedStartTime} — ${formatedEndTime}`;
 };
 
 export const formatDuration = (timeInMin = 0) => {
@@ -42,31 +50,14 @@ export const declinationHelper = (stops) => {
   switch (true) {
     case key === 1:
       return `${stops} пересадка`;
-  
+
     case key >= 2 && key <= 4:
       return `${stops} пересадки`;
-  
+
     case key >= 5 && key <= 20:
       return `${stops} пересадок`;
-  
+
     default:
       return 'Без пересадок';
   }
-};
-
-export const union = (newObj, oldObj) => {
-  const keys = Object.keys(newObj);
-  const unionObj = keys.map((key) => (
-    oldObj[key]
-      ? [...oldObj[key], ...newObj[key]]
-      : newObj[key]
-  ));
-
-  return unionObj;
-};
-
-export const maxStops = (segments) => {
-  const allStops = segments.map(({ stops }) => stops.length);
-
-  return Math.max(...allStops);
 };
