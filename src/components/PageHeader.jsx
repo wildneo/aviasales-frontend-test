@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TicketsLoader from './TicketsLoader';
 import logo from '../logo.svg'
-import './Header.scss'
+import './PageHeader.scss'
 
 const mapStateToProps = ({ fetchSearchState }) => {
   return { fetchSearchState };

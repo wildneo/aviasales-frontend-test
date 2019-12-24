@@ -3,14 +3,14 @@ import React from 'react';
 import { Container, Row, Col } from 'react-grid-system';
 import StopsFilter from './StopsFilter';
 import SortingMenu from './SortingMenu';
-import Header from './Header';
+import PageHeader from './PageHeader';
 import TicketsList from './TicketsList';
 
 const App = () => (
   <Container>
     <Row>
       <Col>
-        <Header />
+        <PageHeader />
       </Col>
     </Row>
     <Row>
