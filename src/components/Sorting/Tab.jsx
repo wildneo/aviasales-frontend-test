@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { invoke } from 'lodash';
 import cn from 'classnames';
 import './Sorting.scss';
 
@@ -14,9 +15,16 @@ export default class Tab extends React.PureComponent {
     ]),
   };
 
+  handleKeyPress = (event) => {
+    const { key } = event;
+    if (key === 'Enter' || key === ' ') {
+      event.preventDefault();
+      this.handleClick(event);
+    }
+  }
+
   handleClick = (event) => {
-    const { onClick, value } = this.props;
-    onClick(event, { value });
+    invoke(this.props, 'onClick', event, this.props);
   }
 
   render() {
@@ -24,8 +32,10 @@ export default class Tab extends React.PureComponent {
 
     return (
       <li
+        onKeyDown={this.handleKeyPress}
         onClick={this.handleClick}
         className={cn('sorting-tabs-tab', { active })}
+        tabIndex="0"
       >
         <span className="tab-title">{title}</span>
       </li>
