@@ -16,7 +16,7 @@ export default class Segment extends React.Component {
     const stopsTitle = declinationHelper(segment.stops.length, ...stopsForms);
     const duration = formatDuration(segment.duration);
     const interval = formatTimeInterval(segment.date, segment.duration);
-    const citys = segment.stops.join(', ');
+    const citys = segment.stops.length === 0 ? 'Прямой' : segment.stops.join(', ');
 
     return (
       <div className="segment">
