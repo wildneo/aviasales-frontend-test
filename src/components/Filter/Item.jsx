@@ -1,16 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { invoke } from 'lodash';
 import './styles/Item.scss';
 
 export default class Item extends React.PureComponent {
   static propTypes = {
     onChange: PropTypes.func,
+    checked: PropTypes.bool,
+    value: PropTypes.string,
     label: PropTypes.node,
   };
 
+  handleKeyPress = (event) => {
+    const { key } = event;
+    if (key === 'Enter' || key === ' ') {
+      event.preventDefault();
+      this.handleChange(event);
+    }
+  }
+
   handleChange = (event) => {
-    const { onChange, value } = this.props;
-    onChange(event, { value });
+    invoke(this.props, 'onChange', event, this.props);
   }
 
   render() {
@@ -22,6 +32,7 @@ export default class Item extends React.PureComponent {
           <span className="checkbox">
             <input
               {...props}
+              onKeyDown={this.handleKeyPress}
               onChange={this.handleChange}
               className="checkbox-input"
               type="checkbox"
