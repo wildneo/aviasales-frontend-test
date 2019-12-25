@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Progress } from 'semantic-ui-react';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 import './TicketsLoader.scss'
 
 const mapStateToProps = ({ pollingState }) => pollingState;
