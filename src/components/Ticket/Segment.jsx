@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatDuration, formatTimeInterval, declinationHelper } from '../../utils';
-import { stopsForms } from '../../consts';
+import { STOPS_FORMS } from '../../consts';
 import './Ticket.scss';
 
 
@@ -13,7 +13,7 @@ export default class Segment extends React.Component {
   render() {
     const { segment } = this.props;
     const routeTitle = `${segment.origin} — ${segment.destination}`;
-    const stopsTitle = declinationHelper(segment.stops.length, ...stopsForms);
+    const stopsTitle = declinationHelper(segment.stops.length, ...STOPS_FORMS);
     const duration = formatDuration(segment.duration);
     const interval = formatTimeInterval(segment.date, segment.duration);
     const citys = segment.stops.length === 0 ? 'Прямой' : segment.stops.join(', ');

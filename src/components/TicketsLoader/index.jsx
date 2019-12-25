@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Progress } from 'semantic-ui-react';
+import { TIME_TO_REFRESH } from '../../consts';
 import * as actions from '../../actions';
 import './TicketsLoader.scss'
 
@@ -22,7 +23,7 @@ class TicketsLoader extends React.Component {
   componentWillUnmount() {
     const { refreshSuccess, requireRefresh, setRefreshTimerId } = this.props;
     refreshSuccess();
-    const refreshTimerId = setTimeout(requireRefresh, 60000);
+    const refreshTimerId = setTimeout(requireRefresh, TIME_TO_REFRESH);
     setRefreshTimerId({ refreshTimerId });
   }
 

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { sortBy, groupBy } from 'lodash';
 import { getTotalDuration, declinationHelper, maxStops } from '../utils';
-import { stopsForms } from '../consts';
+import { STOPS_FORMS } from '../consts';
 
 export const getAllTickets = (state) => state.tickets;
 export const getStopsFilter = (state) => state.stopsFilter;
@@ -17,7 +17,7 @@ export const availableFiltersSelector = createSelector(
   (byStops, stopsFilter) => {
     const keys = Object.keys(byStops);
     const filters = keys.map((value) => {
-      const label = declinationHelper(value, ...stopsForms);
+      const label = declinationHelper(value, ...STOPS_FORMS);
       const isChecked = stopsFilter.byStops[value];
 
       return { value, label, isChecked };

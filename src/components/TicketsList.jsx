@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { times, uniqueId } from 'lodash';
 import { getAllTickets, sortedTicketsSelector } from '../selectors';
 import { declinationHelper } from '../utils';
-import { ticketsForms } from '../consts';
+import { TICKETS_FORMS } from '../consts';
 import Filter from './Filter';
 import Ticket from './Ticket';
 
@@ -36,7 +36,7 @@ class TicktsList extends React.Component {
 
   render() {
     const { tickets, firstFetch, allTicketsAmount } = this.props;
-    const totalAmount = declinationHelper(allTicketsAmount, ticketsForms);
+    const totalAmount = declinationHelper(allTicketsAmount, TICKETS_FORMS);
     const filterMsgTitle = `Мы нашли ${totalAmount}, но ни один не 
       соответствует заданным фильтрам.`;
 

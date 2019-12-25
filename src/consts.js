@@ -1,6 +1,7 @@
-export const stopsForms = [
-  ['пересадка', 'пересадки', 'пересадок'],
-  'Без пересадок',
-];
+export const TIME_TO_REFRESH = 60000;
 
-export const ticketsForms = ['билет', 'билета', 'билетов'];
+export const TICKETS_FORMS = ['билет', 'билета', 'билетов'];
+
+export const STOPS_FORMS = [
+  ['пересадка', 'пересадки', 'пересадок'], 'Без пересадок',
+];
