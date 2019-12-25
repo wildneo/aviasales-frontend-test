@@ -5,9 +5,11 @@ import SortingMenu from './SortingMenu';
 import PageHeader from './PageHeader';
 import TicketsList from './TicketsList';
 import NotifyBar from './NotifyBar';
+import LoadingBar from './LoadingBar';
 
 const App = () => (
   <Container>
+    <LoadingBar />
     <NotifyBar />
     <Row>
       <Col>
