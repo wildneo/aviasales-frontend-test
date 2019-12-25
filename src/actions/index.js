@@ -14,9 +14,10 @@ export {
 } from './fetchTickets';
 
 export {
+  setRefreshTimerId,
   refreshRequest,
-  refreshFailure,
   refreshSuccess,
+  requireRefresh,
   refresh,
 } from './refresh';
 

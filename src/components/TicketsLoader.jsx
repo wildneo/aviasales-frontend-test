@@ -8,13 +8,22 @@ const mapStateToProps = ({ pollingState }) => pollingState;
 
 const actionsList = {
   fetchTickets: actions.fetchTickets,
+  refreshSuccess: actions.refreshSuccess,
+  requireRefresh: actions.requireRefresh,
+  setRefreshTimerId: actions.setRefreshTimerId,
 };
-
 
 class TicketsLoader extends React.Component {
   componentDidMount() {
     const { fetchTickets, searchId } = this.props;
     fetchTickets(searchId);
+  }
+
+  componentWillUnmount() {
+    const { refreshSuccess, requireRefresh, setRefreshTimerId } = this.props;
+    refreshSuccess();
+    const refreshTimerId = setTimeout(requireRefresh, 60000);
+    setRefreshTimerId({ refreshTimerId });
   }
 
   render() {

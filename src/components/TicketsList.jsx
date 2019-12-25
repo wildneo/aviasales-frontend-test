@@ -10,12 +10,19 @@ import Ticket from './Ticket';
 const mapStateToProps = (state) => {
   const tickets = sortedTicketsSelector(state).slice(0, 5);
   const allTicketsAmount = getAllTickets(state).length;
-  const firstFetch = state.pollingState.firstFetch;
+  const { firstFetch } = state.pollingState;
+  const { refreshTimerId } = state.refreshState;
 
-  return { tickets, firstFetch, allTicketsAmount };
+  return { tickets, firstFetch, allTicketsAmount, refreshTimerId };
 };
 
 class TicktsList extends React.Component {
+  componentWillUnmount() {
+    const { refreshTimerId } = this.props;
+    console.log(refreshTimerId);
+    clearTimeout(refreshTimerId);
+  }
+
   renderTickets() {
     const { tickets, firstFetch } = this.props;
 
