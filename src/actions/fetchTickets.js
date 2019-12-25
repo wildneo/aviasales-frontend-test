@@ -12,14 +12,15 @@ export const fetchTickets = (searchId) => async (dispach) => {
   dispach(fetchTicketsRequest());
   try {
     const ticketsUrl = routes.tickets(searchId);
-    const { data: { tickets, stop } } = await axios.request(ticketsUrl);
+    const request = await axios.request(ticketsUrl);
+    const { data: { tickets, stop } } = request;
     dispach(fetchTicketsSuccess({ tickets }));
     stop
       ? dispach(longPollingFinished())
       : dispach(fetchTickets(searchId));
   } catch (err) {
     dispach(fetchTicketsFailure());
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     dispach(fetchTickets(searchId));
     throw err;
   }
