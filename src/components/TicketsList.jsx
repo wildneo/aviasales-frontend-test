@@ -19,7 +19,6 @@ const mapStateToProps = (state) => {
 class TicktsList extends React.Component {
   componentWillUnmount() {
     const { refreshTimerId } = this.props;
-    console.log(refreshTimerId);
     clearTimeout(refreshTimerId);
   }
 
