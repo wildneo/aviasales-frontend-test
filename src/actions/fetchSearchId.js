@@ -10,8 +10,8 @@ export const initSearch = () => async (dispach) => {
   dispach(fetchSearchIdRequest());
   try {
     const searchUrl = routes.search();
-    const request = await axios.request(searchUrl);
-    const { data: { searchId } } = request;
+    const response = await axios.request(searchUrl);
+    const { data: { searchId } } = response;
     dispach(fetchSearchIdSuccess({ searchId }));
   } catch (err) {
     dispach(fetchSearchIdFailure());

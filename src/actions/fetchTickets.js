@@ -12,8 +12,8 @@ export const fetchTickets = (searchId) => async (dispach) => {
   dispach(fetchTicketsRequest());
   try {
     const ticketsUrl = routes.tickets(searchId);
-    const request = await axios.request(ticketsUrl);
-    const { data: { tickets, stop } } = request;
+    const response = await axios.request(ticketsUrl);
+    const { data: { tickets, stop } } = response;
     dispach(fetchTicketsSuccess({ tickets }));
     stop
       ? dispach(longPollingFinished())
