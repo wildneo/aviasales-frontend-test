@@ -6,7 +6,7 @@ const Header = () => (
   <div className="page-header">
     <a
       className="header-logo-link"
-      href="/"
+      href="/aviasales-frontend-test/"
     >
       <img
         className="header-logo-img"
