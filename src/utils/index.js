@@ -1,4 +1,4 @@
-export const maxStops = (segments) => {
+export const maxStops = (segments = []) => {
   const allStops = segments.map(({ stops }) => stops.length);
 
   return Math.max(...allStops);
@@ -10,16 +10,12 @@ export const getTotalDuration = (segments = []) => (
 
 export const getTimeFromDate = (date, timeZone = 'UTC') => {
   const options = {
-    timeZone,
-    hour: 'numeric',
-    minute: 'numeric',
-  };
+    timeZone, hour: 'numeric', minute: 'numeric'};
 
   return new Date(date).toLocaleTimeString('ru', options);
 };
 
-export const formatTimeInterval = (dateString, duration) => {
-  const timeZone = 'Europe/Moscow';
+export const formatTimeInterval = (dateString, duration, timeZone) => {
   const startTime = Date.parse(dateString);
   const endTime = startTime + (60 * 1000 * duration);
   const formatedStartTime = getTimeFromDate(startTime, timeZone);
